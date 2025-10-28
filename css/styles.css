@@ -61,15 +61,27 @@ p{color:var(--muted);font-size:1.05rem;line-height:1.7}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){.reveal{transition:none}}
 body {
-  background: var(--bg);
-  color: var(--ink);
+  background: #f8f9fb; /* grigio chiarissimo neutro */
+  color: #1f1f1f;      /* testo ben leggibile */
   font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 section {
-  background: var(--panel);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  border-radius: 12px;
+  background: #ffffff; /* sezioni bianche pulite */
+  border: 1px solid #e5e7eb; /* bordo leggero e raffinato */
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03); /* ombra dolce */
+  padding: 1.5rem;
 }
 
-
+/* Manteniamo il verde originale delle statistiche */
+.metric .val {
+  color: #1f8f4e;
+  font-weight: 700;
+}
+.metric .desc {
+  color: #4b5563;
+}
