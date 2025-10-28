@@ -44,17 +44,20 @@ if (burger && nav) {
 }
 
 // ---------- Reveal on load + on scroll ----------
-(() => {
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const items = Array.from(document.querySelectorAll(".reveal"));
-
-  if (prefersReduced) { items.forEach(el => el.classList.add("in")); return; }
-
-  // Helper visibilità
-  const isVisible = (el) => {
-    const r = el.getBoundingClientRect();
-    return r.top < window.innerHeight * 0.88 && r.bottom > 0;
-  };
+/* Reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .6s ease-out, transform .6s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.in{
+  opacity:1;
+  transform:none;
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{transition:none; opacity:1; transform:none}
+}
 
   // Stagger iniziale (elementi già visibili al load)
   let loadDelay = 0;
