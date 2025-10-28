@@ -1,17 +1,10 @@
+/* === TAPTAP — Tema chiaro professionale === */
 :root{
   /* Base */
-  --bg:#f8f6f3;          /* sfondo delicato e meno stancante */
+  --bg:#f7f8fb;          /* sfondo pagina */
   --panel:#ffffff;       /* riquadri/sezioni */
-  --line:#e5e7eb;
-  ...
-}
+  --line:#e5e7eb;        /* bordi leggeri */
 
-html,body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  ...
-}
   /* Testi */
   --ink:#1b1f24;         /* testo principale */
   --muted:#6b7280;       /* testo secondario */
