@@ -1,23 +1,20 @@
-/* === TAPTAP — Tema chiaro professionale === */
 :root{
-  /* Base */
+  /* Palette chiara, professionale */
   --bg:#f7f8fb;          /* sfondo pagina */
-  --panel:#ffffff;       /* riquadri/sezioni */
-  --line:#e5e7eb;        /* bordi leggeri */
-
-  /* Testi */
+  --panel:#ffffff;       /* pannelli/sezioni */
+  --line:#e5e7eb;        /* bordi sottili */
   --ink:#1b1f24;         /* testo principale */
   --muted:#6b7280;       /* testo secondario */
+  --brand:#394b63;       /* blu ardesia sobrio */
+  --brand-soft:#e7edf6;  /* riempimenti leggeri */
+  --ring:#dfe6ef;        /* contorni/outline */
 
-  /* Brand & azioni */
-  --brand:#3b82f6;       /* blu fiducia/innovazione */
-  --brand-soft:#e7edf6;  /* hover chiaro */
-  --accent:#d97706;      /* CTA calda/persuasiva */
-  --ring:#dfe6ef;
-
-  /* Stato / metriche */
-  --ok:#1f8f4e;          /* verde KPI (invariato) */
+  /* Stato/feedback (verde KPI invariato) */
+  --ok:#1f8f4e;
   --warn:#b42318;
+
+  /* fallback accenti */
+  --accent:#1f8f4e;
 }
 
 *{box-sizing:border-box}
@@ -26,80 +23,75 @@ html,body{
   background:var(--bg);
   color:var(--ink);
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  line-height:1.6;
 }
-
 a{color:inherit;text-decoration:none}
 .wrap{width:min(960px,92%);margin-inline:auto}
 
 /* ===== Header ===== */
 .site-head{
-  position:sticky; top:0; z-index:50;
-  background:rgba(255,255,255,.75);           /* chiaro */
-  backdrop-filter:saturate(130%) blur(8px);
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:saturate(120%) blur(8px);
   border-bottom:1px solid var(--line);
 }
 .head-inner{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
 .brand{display:flex;align-items:center;gap:.6rem;font-weight:900;letter-spacing:.4px}
 .mark{
   width:10px;height:10px;border-radius:50%;
-  background:linear-gradient(180deg,#6ee7b7,var(--ok));
+  background:linear-gradient(180deg,#6ee7b7,var(--accent));
   box-shadow:0 0 0 4px rgba(34,197,94,.15)
 }
 
 /* Nav + burger */
 .nav{display:flex;gap:1rem;align-items:center}
 .nav a{color:var(--muted);font-weight:700}
-.nav a:hover{color:var(--brand)}
 .burger{display:none;gap:4px;background:transparent;border:0;cursor:pointer}
 .burger span{display:block;width:22px;height:2px;background:#cfd6de;border-radius:1px}
 @media (max-width:800px){
   .burger{display:flex;flex-direction:column}
   .nav{
-    position:fixed; inset:56px 12px auto 12px;
-    background:#ffffff; border:1px solid var(--line);
-    border-radius:12px; padding:12px; flex-direction:column; display:none
+    position:fixed;inset:56px 12px auto 12px;
+    background:#ffffff;border:1px solid var(--line);
+    border-radius:12px;padding:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    flex-direction:column;display:none
   }
+  .nav a{padding:.4rem 0;color:#374151}
   .nav.open{display:flex}
 }
 
-/* ===== Sezioni ===== */
+/* ===== Sections ===== */
 .block{
-  min-height:100svh; display:grid; place-items:center;
-  padding:10vh 0; border-bottom:1px solid var(--line);
-  background:var(--panel);
+  min-height:100svh;
+  display:grid;place-items:center;
+  padding:10vh 0;
+  border-bottom:1px solid var(--line);
+  background:var(--panel)
 }
+/* Variante “alt” più soft e luminosa (niente scuro) */
 .alt{
-  /* variante chiara, non scurisce il testo */
-  background:linear-gradient(180deg,#ffffff,#f4f6fa);
+  background:linear-gradient(180deg,#f4f6fb 0%, #ffffff 60%)
 }
 .content{max-width:72ch;text-align:center;padding:32px}
 
+/* Tipografia */
 h1,h2{line-height:1.1;margin:.2rem 0 1rem}
-h1{font-size:clamp(2rem,6vw,3.2rem); color:var(--ink)}
-h2{font-size:clamp(1.4rem,4.2vw,2.2rem); color:var(--brand)}
+h1{font-size:clamp(2rem,6vw,3.2rem)}
+h2{font-size:clamp(1.4rem,4.2vw,2.2rem);color:#223042}
 p{color:var(--muted);font-size:1.05rem;line-height:1.7}
 
-/* Pannelli (se usi <section>) */
-section{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:14px;
-  box-shadow:0 4px 18px rgba(0,0,0,.03);
-  padding:1.5rem;
-}
-section:hover{box-shadow:0 6px 22px rgba(0,0,0,.06); transform:translateY(-1px); transition:all .2s ease}
-
-/* ===== Metriche ===== */
+/* ===== Metrics ===== */
 .metrics{display:grid;gap:12px;margin-top:1.2rem}
 .metric{display:flex;align-items:baseline;gap:16px;justify-content:center}
 .metric .val{
-  min-width:125px;text-align:right;
-  font-weight:800;font-size:1.7rem;color:var(--ok); /* verde KPI */
+  min-width:125px;text-align:right;font-weight:800;
+  font-size:1.7rem;color:var(--ok)
 }
-.metric .desc{max-width:58ch;color:var(--muted)}
+.metric .desc{max-width:58ch;color:#4b5563}
+
 .separator{height:1px;background:var(--line);margin:18px auto;width:min(420px,60%)}
 .note{color:#9098a3;font-size:.95rem;margin-top:1rem}
 
@@ -107,12 +99,28 @@ section:hover{box-shadow:0 6px 22px rgba(0,0,0,.06); transform:translateY(-1px);
 .site-foot{
   border-top:1px solid var(--line);
   color:var(--muted);
-  padding:20px 0; text-align:center; background:var(--panel);
+  padding:20px 0;text-align:center;
+  background:#ffffff
 }
 
-/* ===== Reveal on scroll ===== */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease, transform .6s ease}
+/* ===== Reveal (animazioni) ===== */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s ease}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{transition:none}}
-/* Safety: se JS non parte, mostra comunque i contenuti */
-body:not(.reveal-ready) .reveal{ opacity:1; transform:none }
+
+/* SAFETY: se JS non parte, mostra comunque i contenuti (evita pagina bianca) */
+body:not(.reveal-ready) .reveal{opacity:1;transform:none}
+
+/* Pannelli look & feel */
+section{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:0 4px 18px rgba(0,0,0,.03);
+  padding:1.5rem;
+}
+
+/* Evidenziazioni (se vorrai usarle) */
+.hl{
+  background:linear-gradient(180deg, transparent 60%, #e9f3ff 60%);
+  padding:0 .1em
+}
