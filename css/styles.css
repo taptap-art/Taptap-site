@@ -114,6 +114,52 @@ p{
   border-radius:3px;
 }
 
+/* ===== Tabella di confronto ===== */
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+}
+.compare th,
+.compare td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.9rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+.compare th {
+  background: var(--brand-soft);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.compare tr:last-child td {
+  border-bottom: none;
+}
+.compare td:nth-child(2) {
+  color: #9b1c1c; /* rosso tenue per metodo tradizionale */
+}
+.compare td:nth-child(3) {
+  color: var(--ok); /* verde per TAPTAP */
+  font-weight: 600;
+}
+.compare td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Ottimizzazione responsive */
+@media (max-width: 640px) {
+  .compare th, .compare td { font-size: 0.92rem; padding: 0.7rem; }
+}
+
 /* ===== METRICS ===== */
 .metrics{display:grid;gap:14px;margin-top:1.2rem}
 .metric{
