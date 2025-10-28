@@ -314,3 +314,54 @@ section:hover{
   .compare{ font-size: .96rem; }
   .compare th, .compare td{ padding: 12px 14px; }
 }
+
+/* --- Hard stop a qualunque overflow orizzontale della pagina --- */
+html, body { overflow-x: hidden; }
+
+/* --- Tabella confronto: layout desktop stabile --- */
+.table-wrap{ width:100%; }
+.compare{
+  width:100%;
+  table-layout: fixed;          /* celle a larghezza fissa = niente “spinta” laterale */
+  border-collapse: collapse;
+}
+.compare th, .compare td{
+  padding: 14px 12px;
+  vertical-align: top;
+  word-wrap: break-word;        /* manda a capo parole lunghe */
+  overflow-wrap: anywhere;      /* forza il capo anche su stringhe senza spazi */
+}
+.compare thead th{ font-size:1.05rem; }
+.compare .neg{ color:#b42318; font-weight:700; }
+.compare .pos{ color:#1f8f4e;  font-weight:700; }
+
+/* Colonne: 30% / 35% / 35% su schermi larghi */
+@media (min-width: 801px){
+  .compare colgroup col:nth-child(1){ width:30%; }
+  .compare colgroup col:nth-child(2),
+  .compare colgroup col:nth-child(3){ width:35%; }
+}
+
+/* --- Mobile: niente scroll orizzontale, layout “card” verticale --- */
+@media (max-width: 800px){
+  /* nasconde l'head e trasforma la tabella in blocchi leggibili */
+  .compare thead{ display:none; }
+  .compare, .compare tbody, .compare tr, .compare td{ display:block; width:100%; }
+  .compare tr{
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+    padding:12px;
+    margin:14px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,.03);
+  }
+  /* prima cella = “voce” */
+  .compare td:nth-child(1){
+    font-weight:800;
+    color:#223042;
+    margin-bottom:8px;
+  }
+  /* seconda e terza = tradizionale vs TAPTAP */
+  .compare td:nth-child(2){ margin-bottom:6px; }
+  .compare td + td{ padding-top:6px; border-top:1px dashed var(--line); }
+}
