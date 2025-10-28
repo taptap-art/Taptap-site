@@ -48,3 +48,14 @@ function startCounter(el){
   }
   requestAnimationFrame(step);
 }
+// Chiude il menu dopo il click su un link
+document.querySelectorAll('#site-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    const menu = document.querySelector('.nav');
+    const burger = document.querySelector('.burger');
+
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  });
+});
+
