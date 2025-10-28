@@ -1,9 +1,12 @@
 /* ================================
-   TAPTAP — main.js (aggiornato)
+   TAPTAP — main.js (pulito e funzionante)
    - Burger menu (toggle + chiudi on click/ESC/outside)
    - Reveal: on load + on scroll (accessibile)
    - Counters: partono quando entrano in viewport
 ================================== */
+
+// Fallback: mostra i testi anche se JS parte in ritardo
+document.body.classList.add('reveal-ready');
 
 // ---------- Burger menu ----------
 const burger = document.querySelector(".burger");
@@ -14,14 +17,14 @@ if (burger && nav) {
   burger.addEventListener("click", () => {
     const open = nav.classList.toggle("open");
     burger.setAttribute("aria-expanded", open ? "true" : "false");
-  }, { passive: true });
+  });
 
   // Chiudi dopo click su una voce
   nav.querySelectorAll("a").forEach(a => {
     a.addEventListener("click", () => {
       nav.classList.remove("open");
       burger.setAttribute("aria-expanded", "false");
-    }, { passive: true });
+    });
   });
 
   // Chiudi con ESC
@@ -44,20 +47,18 @@ if (burger && nav) {
 }
 
 // ---------- Reveal on load + on scroll ----------
-/* Reveal */
-.reveal{
-  opacity:0;
-  transform:translateY(16px);
-  transition:opacity .6s ease-out, transform .6s ease-out;
-  transition-delay: var(--reveal-delay, 0ms);
-}
-.reveal.in{
-  opacity:1;
-  transform:none;
-}
-@media (prefers-reduced-motion: reduce){
-  .reveal{transition:none; opacity:1; transform:none}
-}
+(() => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const items = Array.from(document.querySelectorAll(".reveal"));
+  if (prefersReduced) {
+    items.forEach(el => el.classList.add("in"));
+    return;
+  }
+
+  const isVisible = (el) => {
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.88 && r.bottom > 0;
+  };
 
   // Stagger iniziale (elementi già visibili al load)
   let loadDelay = 0;
@@ -65,7 +66,9 @@ if (burger && nav) {
     if (isVisible(el)) {
       el.style.setProperty("--reveal-delay", `${loadDelay}ms`);
       el.classList.add("in");
-      loadDelay += 70; // piccola cascata
+      // attiva eventuali contatori dentro l'elemento
+      el.querySelectorAll("[data-countto]").forEach(startCounterOnce);
+      loadDelay += 100; // un filo più lento/elegante
     }
   });
 
@@ -75,7 +78,6 @@ if (burger && nav) {
       const el = entry.target;
       if (entry.isIntersecting) {
         el.classList.add("in");
-        // trigger contatori se presenti dentro l'elemento
         el.querySelectorAll("[data-countto]").forEach(startCounterOnce);
         if (el.dataset.repeat !== "true") io.unobserve(el);
       } else if (el.dataset.repeat === "true") {
@@ -85,6 +87,11 @@ if (burger && nav) {
   }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
 
   items.forEach(el => io.observe(el));
+
+  // Se ci sono contatori visibili già al load ma fuori da .reveal
+  document.querySelectorAll("[data-countto]").forEach(el => {
+    if (isVisible(el)) startCounterOnce(el);
+  });
 })();
 
 // ---------- Counters ----------
@@ -97,7 +104,7 @@ function startCounter(el) {
   let from = 0;
   const to = Math.abs(target);
   let start = null;
-  const dur = 1200;
+  const dur = 1300; // leggermente più lento
 
   function step(ts) {
     if (!start) start = ts;
