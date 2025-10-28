@@ -247,3 +247,70 @@ section:hover{
 }
 .btn:hover{background:#208750;transform:translateY(-2px)}
 .btn:active{transform:none}
+
+/* ===== Confronto: table polish ===== */
+.table-wrap{
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: .75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(0,0,0,.04);
+}
+
+/* bordo sfumato che suggerisce lo scroll su mobile */
+.table-wrap::after{
+  content:"";
+  position:absolute; inset:0 0 0 auto; width:24px;
+  background: linear-gradient(90deg, transparent, #fff);
+  pointer-events:none;
+}
+
+.compare{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 640px; /* lascia respiro alle tre colonne */
+  font-size: .98rem;
+}
+.compare th, .compare td{
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.compare thead th{
+  position: sticky; top: 0; z-index: 1;
+  background: #f8fafc;
+  color: #223042;
+  font-weight: 800;
+}
+.compare tbody tr:hover td{ background: #fafcff; }
+
+/* prima colonna: etichetta chiara e allineata a sinistra */
+.compare th.scope{
+  width: 32%;
+  color:#0f172a;
+  background:#fff;
+  position: sticky; left: 0; z-index: 2;
+  border-right: 1px solid var(--line);
+}
+
+/* pro/contro cromatici, sobri */
+.t-neg{ color:#b42318; font-weight:700; }
+.t-pos{ color:var(--ok); font-weight:800; }
+
+/* nota finale */
+.compare-note{
+  margin: 16px 8px 0;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* mobile fine-tuning */
+@media (max-width: 768px){
+  .compare{ font-size: .96rem; }
+  .compare th, .compare td{ padding: 12px 14px; }
+}
