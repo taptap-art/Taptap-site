@@ -8,19 +8,51 @@ if(burger && nav){
   });
 }
 
-// Reveal on scroll
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-      const counters = e.target.querySelectorAll('.val[data-countto]');
-      counters.forEach(startCounter);
+// ===== Reveal on load + on scroll (accessibile) =====
+(() => {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = Array.from(document.querySelectorAll('.reveal'));
+
+  if (prefersReduced) {
+    items.forEach(el => el.classList.add('in'));
+    return;
+  }
+
+  // Stagger leggero per quelli già visibili al load
+  const isVisible = el => {
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.88 && r.bottom > 0;
+  };
+
+  let loadDelay = 0;
+  items.forEach(el => {
+    if (isVisible(el)) {
+      el.style.setProperty('--reveal-delay', `${loadDelay}ms`);
+      el.classList.add('in');
+      loadDelay += 70; // piccola cascata
     }
   });
-}, {root:null, rootMargin:'0px 0px -10% 0px', threshold:.2});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+  // IntersectionObserver per gli altri
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const el = entry.target;
+      if (entry.isIntersecting) {
+        el.classList.add('in');
+        // Se NON vuoi ripetere, smetti di osservare (default)
+        if (el.dataset.repeat !== 'true') io.unobserve(el);
+      } else {
+        // Se vuoi che un elemento si rianimi ogni volta che rientra, usa data-repeat="true"
+        if (el.dataset.repeat === 'true') el.classList.remove('in');
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px'
+  });
+
+  items.forEach(el => io.observe(el));
+})();
 // Counters
 function startCounter(el){
   const target = parseFloat(el.dataset.countto);
