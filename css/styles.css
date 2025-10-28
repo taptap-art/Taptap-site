@@ -31,7 +31,9 @@ html,body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;           /* hard stop a qualunque overflow orizzontale */
 }
+img,video{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{width:min(960px,92%);margin-inline:auto}
 
@@ -58,8 +60,7 @@ a{color:inherit;text-decoration:none}
   font-weight:600;
   transition:color .25s ease;
 }
-.nav a:hover,
-.nav a:focus{color:var(--brand);}
+.nav a:hover,.nav a:focus{color:var(--brand)}
 
 .burger{display:none;gap:4px;background:transparent;border:0;cursor:pointer}
 .burger span{display:block;width:22px;height:2px;background:#cfd6de;border-radius:1px;transition:background .3s ease}
@@ -68,13 +69,10 @@ a{color:inherit;text-decoration:none}
   .burger{display:flex;flex-direction:column}
   .nav{
     position:fixed;inset:56px 12px auto 12px;
-    background:#ffffff;
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:16px;
+    background:#ffffff;border:1px solid var(--line);
+    border-radius:12px;padding:16px;
     box-shadow:0 10px 30px rgba(0,0,0,.06);
-    flex-direction:column;
-    display:none;
+    flex-direction:column;display:none
   }
   .nav a{padding:.4rem 0;color:#374151}
   .nav.open{display:flex}
@@ -83,141 +81,51 @@ a{color:inherit;text-decoration:none}
 /* ===== SECTIONS ===== */
 .block{
   min-height:100svh;
-  display:grid;
-  place-items:center;
+  display:grid;place-items:center;
   padding:10vh 0;
   border-bottom:1px solid var(--line);
-  background:var(--panel);
+  background:var(--panel)
 }
-.alt{
-  background:linear-gradient(180deg,#f4f7fb 0%, #ffffff 70%);
-}
+.alt{background:linear-gradient(180deg,#f4f7fb 0%, #ffffff 70%)}
 .content{max-width:72ch;text-align:center;padding:32px}
 
 /* ===== TYPOGRAPHY ===== */
 h1,h2{line-height:1.1;margin:.2rem 0 1rem;font-weight:800}
 h1{font-size:var(--fs-h1);color:var(--brand)}
 h2{font-size:var(--fs-h2);color:#223042}
-p{
-  color:var(--muted);
-  font-size:var(--fs-body);
-  line-height:1.75;
-  margin-bottom:1.1rem;
-}
+p{color:var(--muted);font-size:var(--fs-body);line-height:1.75;margin-bottom:1.1rem}
 
 /* evidenziazione (parole chiave) */
 .hl{
   background:linear-gradient(180deg,transparent 60%,#e8f7ee 60%);
   color:var(--ink);
   font-weight:600;
-  padding:0 .1em;
-  border-radius:3px;
-}
-
-/* ===== Tabella di confronto ===== */
-.table-wrap {
-  overflow-x: auto;
-  margin-top: 1.5rem;
-}
-.compare {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,.04);
-}
-.compare th,
-.compare td {
-  border-bottom: 1px solid var(--line);
-  padding: 0.9rem 1rem;
-  text-align: left;
-  vertical-align: top;
-}
-.compare th {
-  background: var(--brand-soft);
-  color: var(--ink);
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-.compare tr:last-child td {
-  border-bottom: none;
-}
-.compare td:nth-child(2) {
-  color: #9b1c1c; /* rosso tenue per metodo tradizionale */
-}
-.compare td:nth-child(3) {
-  color: var(--ok); /* verde per TAPTAP */
-  font-weight: 600;
-}
-.compare td:first-child {
-  font-weight: 600;
-  color: var(--ink);
-}
-
-/* Ottimizzazione responsive */
-@media (max-width: 640px) {
-  .compare th, .compare td { font-size: 0.92rem; padding: 0.7rem; }
+  padding:0 .1em;border-radius:3px;
 }
 
 /* ===== METRICS ===== */
 .metrics{display:grid;gap:14px;margin-top:1.2rem}
-.metric{
-  display:flex;
-  align-items:baseline;
-  gap:16px;
-  justify-content:center;
-}
-.metric .val{
-  min-width:125px;
-  text-align:right;
-  font-weight:800;
-  font-size:1.8rem;
-  color:var(--ok);
-}
-.metric .desc{
-  max-width:58ch;
-  color:#4b5563;
-  font-size:1rem;
-}
-
-/* separator line */
-.separator{
-  height:1px;
-  background:var(--line);
-  margin:20px auto;
-  width:min(420px,60%);
-}
-.note{
-  color:#9098a3;
-  font-size:.95rem;
-  margin-top:1rem;
-  font-style:italic;
-}
+.metric{display:flex;align-items:baseline;gap:16px;justify-content:center}
+.metric .val{min-width:125px;text-align:right;font-weight:800;font-size:1.8rem;color:var(--ok)}
+.metric .desc{max-width:58ch;color:#4b5563;font-size:1rem}
+.separator{height:1px;background:var(--line);margin:20px auto;width:min(420px,60%)}
+.note{color:#9098a3;font-size:.95rem;margin-top:1rem;font-style:italic}
 
 /* ===== FOOTER ===== */
 .site-foot{
   border-top:1px solid var(--line);
   color:var(--muted);
-  padding:24px 0;
-  text-align:center;
-  background:#ffffff;
-  font-size:.95rem;
+  padding:24px 0;text-align:center;background:#ffffff;font-size:.95rem
 }
 
 /* ===== REVEAL (animazioni) ===== */
 .reveal{
-  opacity:0;
-  transform:translateY(22px);
+  opacity:0;transform:translateY(22px);
   transition:opacity .8s ease, transform .8s ease;
-  transition-delay:var(--reveal-delay,0ms);
+  transition-delay:var(--reveal-delay,0ms)
 }
 .reveal.in{opacity:1;transform:none}
-
-/* fallback: se JS non parte */
 body:not(.reveal-ready) .reveal{opacity:1;transform:none}
-
-/* riduzione movimento */
 @media (prefers-reduced-motion:reduce){
   .reveal{transition:none;opacity:1;transform:none}
 }
@@ -228,140 +136,98 @@ section{
   border:1px solid var(--line);
   border-radius:14px;
   box-shadow:0 6px 22px rgba(0,0,0,.035);
-  padding:1.8rem;
-  transition:box-shadow .3s ease;
+  padding:1.8rem;transition:box-shadow .3s ease
 }
-section:hover{
-  box-shadow:0 10px 28px rgba(0,0,0,.05);
-}
+section:hover{box-shadow:0 10px 28px rgba(0,0,0,.05)}
 
-/* ===== BUTTON (se aggiungerai CTA) ===== */
+/* ===== BUTTON (CTA eventuale) ===== */
 .btn{
-  display:inline-block;
-  background:var(--accent);
-  color:#fff;
-  font-weight:600;
-  padding:.7rem 1.4rem;
-  border-radius:8px;
-  transition:background .3s ease, transform .2s ease;
+  display:inline-block;background:var(--accent);color:#fff;font-weight:600;
+  padding:.7rem 1.4rem;border-radius:8px;
+  transition:background .3s ease, transform .2s ease
 }
 .btn:hover{background:#208750;transform:translateY(-2px)}
 .btn:active{transform:none}
 
-/* ===== Confronto: table polish ===== */
+/* ======================
+   TABELLA DI CONFRONTO
+   ====================== */
+
+/* contenitore */
 .table-wrap{
-  position: relative;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-top: .75rem;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 6px 22px rgba(0,0,0,.04);
-}
-
-/* bordo sfumato che suggerisce lo scroll su mobile */
-.table-wrap::after{
-  content:"";
-  position:absolute; inset:0 0 0 auto; width:24px;
-  background: linear-gradient(90deg, transparent, #fff);
-  pointer-events:none;
-}
-
-.compare{
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  min-width: 640px; /* lascia respiro alle tre colonne */
-  font-size: .98rem;
-}
-.compare th, .compare td{
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--line);
-  vertical-align: top;
-}
-.compare thead th{
-  position: sticky; top: 0; z-index: 1;
-  background: #f8fafc;
-  color: #223042;
-  font-weight: 800;
-}
-.compare tbody tr:hover td{ background: #fafcff; }
-
-/* prima colonna: etichetta chiara e allineata a sinistra */
-.compare th.scope{
-  width: 32%;
-  color:#0f172a;
+  width:100%;
+  position:relative;
+  overflow:hidden;               /* niente scroll orizzontale */
+  margin-top:.75rem;
+  border:1px solid var(--line);
+  border-radius:12px;
   background:#fff;
-  position: sticky; left: 0; z-index: 2;
-  border-right: 1px solid var(--line);
+  box-shadow:0 6px 22px rgba(0,0,0,.04)
+}
+/* lieve sfumatura a dx (solo estetica, non serve allo scroll) */
+.table-wrap::after{
+  content:"";position:absolute;inset:0 0 0 auto;width:24px;
+  background:linear-gradient(90deg,transparent,#fff);pointer-events:none
 }
 
-/* pro/contro cromatici, sobri */
-.t-neg{ color:#b42318; font-weight:700; }
-.t-pos{ color:var(--ok); font-weight:800; }
-
-/* nota finale */
-.compare-note{
-  margin: 16px 8px 0;
-  color: var(--muted);
-  font-style: italic;
-  text-align: center;
-}
-
-/* mobile fine-tuning */
-@media (max-width: 768px){
-  .compare{ font-size: .96rem; }
-  .compare th, .compare td{ padding: 12px 14px; }
-}
-
-/* --- Hard stop a qualunque overflow orizzontale della pagina --- */
-html, body { overflow-x: hidden; }
-
-/* --- Tabella confronto: layout desktop stabile --- */
-.table-wrap{ width:100%; }
+/* tabella desktop */
 .compare{
   width:100%;
-  table-layout: fixed;          /* celle a larghezza fissa = niente “spinta” laterale */
-  border-collapse: collapse;
+  border-collapse:collapse;
+  table-layout:fixed;            /* celle a larghezza fissa = niente spinta laterale */
+  font-size:.98rem
 }
-.compare th, .compare td{
-  padding: 14px 12px;
-  vertical-align: top;
-  word-wrap: break-word;        /* manda a capo parole lunghe */
-  overflow-wrap: anywhere;      /* forza il capo anche su stringhe senza spazi */
+.compare th,.compare td{
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+  word-wrap:break-word;
+  overflow-wrap:anywhere;        /* forza capo anche su stringhe lunghe */
+  text-align:left
 }
-.compare thead th{ font-size:1.05rem; }
-.compare .neg{ color:#b42318; font-weight:700; }
-.compare .pos{ color:#1f8f4e;  font-weight:700; }
+.compare thead th{
+  background:#f8fafc;color:#223042;font-weight:800;font-size:1.05rem
+}
+.compare tbody tr:hover td{background:#fafcff}
 
-/* Colonne: 30% / 35% / 35% su schermi larghi */
-@media (min-width: 801px){
-  .compare colgroup col:nth-child(1){ width:30%; }
+.compare th.scope{
+  width:30%;
+  color:#0f172a;background:#fff;
+  position:sticky;left:0;z-index:2;
+  border-right:1px solid var(--line)
+}
+.compare .neg{color:#b42318;font-weight:700}
+.compare .pos{color:#1f8f4e;font-weight:800}
+
+/* colonne desktop 30/35/35 */
+@media (min-width:801px){
+  .compare colgroup col:nth-child(1){width:30%}
   .compare colgroup col:nth-child(2),
-  .compare colgroup col:nth-child(3){ width:35%; }
+  .compare colgroup col:nth-child(3){width:35%}
 }
 
-/* --- Mobile: niente scroll orizzontale, layout “card” verticale --- */
-@media (max-width: 800px){
-  /* nasconde l'head e trasforma la tabella in blocchi leggibili */
-  .compare thead{ display:none; }
-  .compare, .compare tbody, .compare tr, .compare td{ display:block; width:100%; }
+/* --- MOBILE: layout a card verticali (0 overflow, leggibile) --- */
+@media (max-width:800px){
+  .table-wrap{border-radius:14px;padding:6px}
+  .compare thead{display:none}
+  .compare, .compare tbody, .compare tr, .compare td{display:block;width:100%}
   .compare tr{
     border:1px solid var(--line);
-    border-radius:12px;
-    background:#fff;
-    padding:12px;
-    margin:14px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,.03);
+    border-radius:12px;background:#fff;
+    padding:12px;margin:14px 0;
+    box-shadow:0 2px 10px rgba(0,0,0,.03)
   }
-  /* prima cella = “voce” */
+  .compare td{border:none;padding:6px 4px}
   .compare td:nth-child(1){
-    font-weight:800;
-    color:#223042;
-    margin-bottom:8px;
+    font-weight:800;color:#223042;margin-bottom:6px
   }
-  /* seconda e terza = tradizionale vs TAPTAP */
-  .compare td:nth-child(2){ margin-bottom:6px; }
-  .compare td + td{ padding-top:6px; border-top:1px dashed var(--line); }
+  .compare td + td{padding-top:8px;border-top:1px dashed var(--line)}
+}
+
+/* nota finale sotto tabella */
+.compare-note{
+  margin:16px 8px 0;
+  color:var(--muted);
+  font-style:italic;
+  text-align:center
 }
