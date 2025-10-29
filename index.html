@@ -17,7 +17,6 @@
 </head>
 
 <body>
-  <!-- Skip link RIMOSSO -->
 
   <header class="site-head" role="banner">
     <div class="wrap head-inner">
@@ -41,23 +40,22 @@
   <main id="content">
     <!-- HERO -->
     <section class="block alt hero" id="home">
-      <!-- grafico dinamico -->
       <svg class="hero-graph" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="lg-speed" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0"  stop-color="var(--accent)" stop-opacity="0.15"/>
-            <stop offset="1"  stop-color="var(--accent)" stop-opacity="0.55"/>
+            <stop offset="0" stop-color="var(--accent)" stop-opacity="0.15"/>
+            <stop offset="1" stop-color="var(--accent)" stop-opacity="0.55"/>
           </linearGradient>
           <linearGradient id="lg-benefit" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0"  stop-color="var(--ok)" stop-opacity="0.12"/>
-            <stop offset="1"  stop-color="var(--ok)" stop-opacity="0.45"/>
+            <stop offset="0" stop-color="var(--ok)" stop-opacity="0.12"/>
+            <stop offset="1" stop-color="var(--ok)" stop-opacity="0.45"/>
           </linearGradient>
           <linearGradient id="lg-revenue" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0"  stop-color="var(--accent)" stop-opacity="0.10"/>
-            <stop offset="1"  stop-color="var(--accent)" stop-opacity="0.60"/>
+            <stop offset="0" stop-color="var(--accent)" stop-opacity="0.10"/>
+            <stop offset="1" stop-color="var(--accent)" stop-opacity="0.60"/>
           </linearGradient>
         </defs>
-        <path class="line speed"   stroke="url(#lg-speed)"   d="M0,250 C200,220 320,210 520,240 C760,280 900,200 1200,230" />
+        <path class="line speed" stroke="url(#lg-speed)" d="M0,250 C200,220 320,210 520,240 C760,280 900,200 1200,230" />
         <path class="line benefit" stroke="url(#lg-benefit)" d="M0,280 C180,270 360,230 620,250 C820,265 1000,230 1200,240" />
         <path class="line revenue" stroke="url(#lg-revenue)" d="M0,310 C160,300 360,280 600,230 C820,185 980,170 1200,140" />
       </svg>
@@ -86,124 +84,47 @@
     <section class="block alt" id="prodotto">
       <div class="wrap content reveal">
         <h2>Cos'è TAPTAP</h2>
-
         <p><strong>TAPTAP</strong> è una piattaforma digitale <span class="hl">chiara e immediata</span>, ideata per semplificare la gestione e migliorare l’organizzazione di bar, ristoranti e pizzerie.</p>
-
-        <p>Al centro c’è un <strong>menù digitale interattivo</strong>: il cliente visualizza i prodotti, ordina e paga dal proprio smartphone in modo rapido e sicuro.</p>
-
-        <p>Ogni funzione è progettata per essere <strong>intuitiva e confortevole</strong>, offrendo un’esperienza d’uso chiara e immediata.</p>
-
-        <p>L’integrazione con piattaforme di pagamento affidabili come <strong>SumUp</strong> — con commissioni tra le più basse del settore (circa 0,95% per transazione) — garantisce transazioni fluide e trasparenti.</p>
-
-        <p>Il sistema include <strong>strumenti pratici</strong> come il pagamento direttamente dal tavolo, la visualizzazione dei tempi medi di attesa e un’esperienza d’ordine pensata per valorizzare la scelta del cliente, insieme a funzioni che rendono la gestione più fluida e completa.</p>
-
-        <p>Dal lato gestionale, TAPTAP offre un <strong>pannello di controllo</strong> chiaro e visuale, dove il titolare consulta ordini, prenotazioni e statistiche — dai prodotti più richiesti alle fasce orarie più redditizie — con lettura immediata.</p>
-
-        <p>I benefici sono concreti: tempi di attesa ridotti, maggiore ricircolo, incremento del fatturato e una gestione del personale più equilibrata. TAPTAP è una soluzione accessibile e completa, capace di unire efficienza, semplicità e crescita reale.</p>
+        <p>Il cliente visualizza il menù, ordina e paga dal proprio smartphone in modo rapido e sicuro, connesso direttamente alla gestione interna del locale.</p>
+        <p>L’integrazione con <strong>SumUp</strong> garantisce pagamenti fluidi e commissioni minime, mentre il pannello admin offre statistiche, analisi e monitoraggio in tempo reale.</p>
       </div>
     </section>
-    
+
+    <!-- CONFRONTO OPERATIVO -->
     <section class="block" id="confronto">
-  <div class="wrap content reveal">
-    <h2>Confronto operativo</h2>
-    <p class="intro">Differenze chiave tra i sistemi gestionali tradizionali e il modello integrato <strong>TAPTAP</strong>.</p>
+      <div class="wrap content reveal">
+        <h2>Confronto operativo</h2>
+        <p class="intro">Differenze chiave tra i sistemi gestionali tradizionali e il modello integrato <strong>TAPTAP</strong>.</p>
 
-
-          <!-- LISTA ORDINI -->
-          <div class="orders">
-            <div class="row"><span class="label">Margherita</span><span class="val">€8,50</span></div>
-            <div class="row"><span class="label">Capricciosa</span><span class="val">€9,00</span></div>
-            <div class="row"><span class="label">Acqua</span><span class="val">€1,50</span></div>
-            <div class="row"><span class="label">Tiramisù</span><span class="val">€4,00</span></div>
-          </div>
+        <div class="table-wrap">
+          <table class="compare" aria-describedby="confronto-intro">
+            <thead>
+              <tr>
+                <th scope="col">Aspetto operativo</th>
+                <th scope="col">Metodo tradizionale</th>
+                <th scope="col">Metodo TAPTAP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Flusso d’ordine</td><td class="neg">Passaggi multipli e ritardi.</td><td class="pos">Ordine diretto e immediato.</td></tr>
+              <tr><td>Precisione operativa</td><td class="neg">Errori umani frequenti.</td><td class="pos">Dati strutturati, errore quasi nullo.</td></tr>
+              <tr><td>Tempi di servizio</td><td class="neg">Variabili e lenti.</td><td class="pos">Stabili, ridotti del 30%.</td></tr>
+              <tr><td>Esperienza cliente</td><td class="neg">Discontinua, dipendente dal personale.</td><td class="pos">Autonoma, fluida e coerente.</td></tr>
+              <tr><td>Pagamenti</td><td class="neg">Manuali o con POS esterno.</td><td class="pos">Digitali e immediati dal tavolo.</td></tr>
+              <tr><td>Licenze e costi</td><td class="neg">Canoni e vincoli contrattuali.</td><td class="pos">Nessuna licenza, piena proprietà.</td></tr>
+              <tr><td>Controllo dati</td><td class="neg">Dati su server terzi.</td><td class="pos">Piena proprietà e controllo.</td></tr>
+              <tr><td>Scalabilità</td><td class="neg">Richiede più personale.</td><td class="pos">Automatica e sostenibile.</td></tr>
+              <tr><td>Analisi e decisioni</td><td class="neg">Report separati.</td><td class="pos">Dashboard in tempo reale.</td></tr>
+              <tr><td>Sostenibilità economica</td><td class="neg">Costi fissi elevati.</td><td class="pos">Investimento unico, ridotto nel tempo.</td></tr>
+              <tr><td>Innovazione</td><td class="neg">Sistemi chiusi e rigidi.</td><td class="pos">Aperti e orientati al risultato.</td></tr>
+              <tr><td>Fidelizzazione</td><td class="neg">Servizio disomogeneo.</td><td class="pos">Esperienza coerente e continua.</td></tr>
+            </tbody>
+          </table>
         </div>
+
+        <p id="confronto-intro" class="note"><strong>TAPTAP</strong> trasforma la gestione da modello reattivo a predittivo: meno complessità, più controllo e valore nel tempo.</p>
       </div>
-    </div>
-
-    <p class="note">Animazione simulata, ispirata al design Apple: flusso fluido, elegante e realistico.</p>
-  </div>
-</section>
-
-    <div class="table-wrap">
-      <table class="compare" aria-describedby="confronto-intro">
-        <colgroup>
-          <col span="1"><col span="1"><col span="1">
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">Aspetto operativo</th>
-            <th scope="col">Metodo tradizionale</th>
-            <th scope="col">Metodo TAPTAP</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Flusso d’ordine</td>
-            <td class="neg">Passaggi multipli, margine d’errore e ritardi.</td>
-            <td class="pos">Ordine diretto, nessun passaggio intermedio.</td>
-          </tr>
-          <tr>
-            <td>Precisione operativa</td>
-            <td class="neg">Errori umani e correzioni frequenti.</td>
-            <td class="pos">Dati strutturati, errore quasi nullo.</td>
-          </tr>
-          <tr>
-            <td>Tempi di servizio</td>
-            <td class="neg">Variabili e dipendenti dal personale.</td>
-            <td class="pos">Stabili e misurabili, ottimizzazione −30%.</td>
-          </tr>
-          <tr>
-            <td>Esperienza cliente</td>
-            <td class="neg">Dipendente dal personale, discontinua.</td>
-            <td class="pos">Autonoma, fluida e coerente.</td>
-          </tr>
-          <tr>
-            <td>Pagamenti</td>
-            <td class="neg">Manuali o con POS esterno, incasso lento.</td>
-            <td class="pos">Digitali e immediati dal tavolo.</td>
-          </tr>
-          <tr>
-            <td>Licenze e costi</td>
-            <td class="neg">Canoni ricorrenti e vincoli contrattuali.</td>
-            <td class="pos">Nessuna licenza, piena proprietà.</td>
-          </tr>
-          <tr>
-            <td>Controllo dati</td>
-            <td class="neg">Accesso limitato, dati su server terzi.</td>
-            <td class="pos">Totale controllo e proprietà dei dati.</td>
-          </tr>
-          <tr>
-            <td>Scalabilità</td>
-            <td class="neg">Richiede più personale e dispositivi.</td>
-            <td class="pos">Automatica e sostenibile.</td>
-          </tr>
-          <tr>
-            <td>Analisi e decisioni</td>
-            <td class="neg">Report separati, non sincronizzati.</td>
-            <td class="pos">Dashboard integrata in tempo reale.</td>
-          </tr>
-          <tr>
-            <td>Sostenibilità economica</td>
-            <td class="neg">Costi fissi elevati, dipendenza da terzi.</td>
-            <td class="pos">Investimento unico, costi ridotti nel tempo.</td>
-          </tr>
-          <tr>
-            <td>Innovazione</td>
-            <td class="neg">Sistemi chiusi, centrati sulla burocrazia.</td>
-            <td class="pos">Struttura aperta e orientata al risultato.</td>
-          </tr>
-          <tr>
-            <td>Fidelizzazione</td>
-            <td class="neg">Bassa, servizio disomogeneo.</td>
-            <td class="pos">Alta, esperienza coerente e controllata.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p id="confronto-intro" class="note"><strong>TAPTAP</strong> trasforma la gestione della ristorazione da modello reattivo a modello predittivo: meno complessità, più controllo e valore nel tempo.</p>
-  </div>
-</section>
+    </section>
 
     <!-- STUDI -->
     <section class="block" id="studi">
@@ -222,32 +143,13 @@
       <div class="wrap content reveal">
         <h2>Risultati sperimentali</h2>
         <div class="metrics">
-          <div class="metric">
-            <div class="val" data-countto="-31.7" data-format="percent">−31,7%</div>
-            <div class="desc">Tempi di attesa ridotti grazie all’invio diretto in cucina.</div>
-          </div>
-          <div class="metric">
-            <div class="val" data-countto="-82.4" data-format="percent">−82,4%</div>
-            <div class="desc">Errori d’ordine quasi azzerati: niente passaggi manuali.</div>
-          </div>
-          <div class="metric">
-            <div class="val" data-countto="18.9" data-format="percent">+18,9%</div>
-            <div class="desc">Più ritorni nelle prime quattro settimane.</div>
-          </div>
-          <div class="metric">
-            <div class="val" data-countto="12.6" data-format="percent">+12,6%</div>
-            <div class="desc">Scontrino medio più alto con suggerimenti visivi.</div>
-          </div>
-          <div class="metric">
-            <div class="val" data-countto="14.8" data-format="percent">+14,8%</div>
-            <div class="desc">Aumento degli acquisti aggiuntivi e impulsivi.</div>
-          </div>
-          <div class="metric">
-            <div class="val" data-countto="0.46" data-format="star">+0,46★</div>
-            <div class="desc">Soddisfazione complessiva più alta (scala 1–5).</div>
-          </div>
+          <div class="metric"><div class="val">−31,7%</div><div class="desc">Tempi di attesa ridotti.</div></div>
+          <div class="metric"><div class="val">−82,4%</div><div class="desc">Errori d’ordine quasi azzerati.</div></div>
+          <div class="metric"><div class="val">+18,9%</div><div class="desc">Più ritorni nelle prime settimane.</div></div>
+          <div class="metric"><div class="val">+12,6%</div><div class="desc">Scontrino medio più alto.</div></div>
+          <div class="metric"><div class="val">+14,8%</div><div class="desc">Acquisti aggiuntivi aumentati.</div></div>
+          <div class="metric"><div class="val">+0,46★</div><div class="desc">Soddisfazione complessiva più alta.</div></div>
         </div>
-        <p class="note">Metodologia: campioni rappresentativi di utenti reali e simulati; indicatori quantitativi e qualitativi. Verifica statistica con margine d’errore &lt; 5%.</p>
       </div>
     </section>
 
@@ -255,8 +157,7 @@
     <section class="block" id="sintesi">
       <div class="wrap content reveal">
         <h2>Sintesi</h2>
-        <p>Le analisi interne del team TAPTAP indicano un <strong>miglioramento complessivo del rendimento del locale pari a circa +38%</strong>. L’incremento tiene conto di ricavi, riduzione dei tempi d’attesa, diminuzione degli errori e maggiore fidelizzazione e soddisfazione dei clienti.</p>
-        <p><strong>TAPTAP</strong> è oggi una delle soluzioni più <strong>innovative e funzionali</strong> per la ristorazione, progettata per ottimizzare esperienza e gestione dei locali.</p>
+        <p><strong>TAPTAP</strong> migliora del +38% la gestione complessiva dei locali, ottimizzando ricavi, tempi e fidelizzazione dei clienti. Una soluzione moderna e concreta per la ristorazione digitale.</p>
       </div>
     </section>
   </main>
