@@ -286,4 +286,13 @@ section:hover{box-shadow:0 10px 28px rgba(0,0,0,.05)}
   }
 }
 
+/* Nasconde il link "Salta al contenuto" di GitHub Pages */
+a[href="#content"], a.skip-to-content {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
