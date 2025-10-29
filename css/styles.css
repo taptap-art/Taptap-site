@@ -150,60 +150,59 @@ section:hover{box-shadow:0 10px 28px rgba(0,0,0,.05)}
 .btn:active{transform:none}
 
 /* ======================
-   TABELLA DI CONFRONTO
+   TABELLA DI CONFRONTO (tabella vera su tutti i device)
    ====================== */
 
-/* contenitore */
 .table-wrap{
   width:100%;
   position:relative;
-  overflow:hidden;               /* niente scroll orizzontale */
+  overflow:hidden;                 /* evita scroll laterale */
   margin-top:.75rem;
   border:1px solid var(--line);
   border-radius:12px;
   background:#fff;
-  box-shadow:0 6px 22px rgba(0,0,0,.04)
-}
-/* lieve sfumatura a dx (solo estetica, non serve allo scroll) */
-.table-wrap::after{
-  content:"";position:absolute;inset:0 0 0 auto;width:24px;
-  background:linear-gradient(90deg,transparent,#fff);pointer-events:none
+  box-shadow:0 6px 22px rgba(0,0,0,.04);
 }
 
-/* tabella desktop */
 .compare{
   width:100%;
   border-collapse:collapse;
-  table-layout:fixed;            /* celle a larghezza fissa = niente spinta laterale */
-  font-size:.98rem
+  table-layout:fixed;              /* colonne fisse => niente overflow */
+  font-size:.98rem;
 }
+
 .compare th,.compare td{
-  padding:14px 16px;
+  padding:14px 12px;
   border-bottom:1px solid var(--line);
   vertical-align:top;
-  word-wrap:break-word;
-  overflow-wrap:anywhere;        /* forza capo anche su stringhe lunghe */
-  text-align:left
+  text-align:left;
+  word-break:break-word;
+  overflow-wrap:anywhere;
 }
+.compare tr:last-child td{ border-bottom:none; }
+
 .compare thead th{
-  background:#f8fafc;color:#223042;font-weight:800;font-size:1.05rem
+  background:#f8fafc;
+  color:#223042;
+  font-weight:800;
+  font-size:1.05rem;
 }
-.compare tbody tr:hover td{background:#fafcff}
 
-.compare th.scope{
-  width:30%;
-  color:#0f172a;background:#fff;
-  position:sticky;left:0;z-index:2;
-  border-right:1px solid var(--line)
-}
-.compare .neg{color:#b42318;font-weight:700}
-.compare .pos{color:#1f8f4e;font-weight:800}
+/* cromie persuasive ma sobrie */
+.compare .neg{ color:#b42318; font-weight:700; }
+.compare .pos{ color:var(--ok); font-weight:800; }
 
-/* colonne desktop 30/35/35 */
+/* proporzioni colonne su schermi larghi */
 @media (min-width:801px){
-  .compare colgroup col:nth-child(1){width:30%}
-  .compare colgroup col:nth-child(2),
-  .compare colgroup col:nth-child(3){width:35%}
+  .compare colgroup col:nth-child(1){ width:30%; }
+  .compare colgroup col:nth-child(2){ width:35%; }
+  .compare colgroup col:nth-child(3){ width:35%; }
+}
+
+/* mobile: resta tabellare, solo più compatta */
+@media (max-width:800px){
+  .compare{ font-size:0.94rem; }
+  .compare th,.compare td{ padding:10px 8px; }
 }
 
 /* --- MOBILE: layout a card verticali (0 overflow, leggibile) --- */
