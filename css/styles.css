@@ -412,3 +412,64 @@ a[href="#skip-to-content"],
 @media (max-width:620px){
   .kpi-row{grid-template-columns:1fr}
 }
+
+/* ===== Splash pittorico per la sezione STUDI ===== */
+.with-splash { position: relative; overflow: hidden; }
+.with-splash .wrap { position: relative; z-index: 2; }
+
+/* layer “pennellate” */
+.paint-splash{
+  position: absolute;
+  inset: -12% -8% -16% -8%;
+  z-index: 1;
+  pointer-events: none;
+  filter: saturate(112%);
+  opacity: .85;
+}
+
+/* base: macchie morbide (fiducia/professionalità/innovazione) */
+.paint-splash::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(520px 340px at 15% 12%, rgba(37,99,235,.16), transparent 62%),
+    radial-gradient(560px 380px at 86% 18%, rgba(14,165,164,.15), transparent 64%),
+    radial-gradient(640px 420px at 22% 86%, rgba(34,197,94,.16), transparent 60%),
+    radial-gradient(380px 260px at 82% 78%, rgba(245,158,11,.10), transparent 66%),
+    radial-gradient(420px 280px at 50% -5%, rgba(56,189,248,.12), transparent 60%);
+  mix-blend-mode:multiply;
+  filter: blur(18px);
+  animation: splashMove 22s linear infinite alternate;
+}
+
+/* pennellate direzionali leggere */
+.paint-splash::after{
+  content:"";
+  position:absolute; inset:-6% -4% -6% -4%;
+  background:
+    conic-gradient(from 28deg at 62% 38%, transparent 0 18deg, rgba(56,189,248,.22) 18deg 34deg, transparent 34deg 360deg),
+    conic-gradient(from -18deg at 30% 72%, transparent 0 14deg, rgba(34,197,94,.22) 14deg 30deg, transparent 30deg 360deg),
+    linear-gradient(110deg, rgba(14,165,233,.12) 0%, transparent 45%),
+    linear-gradient(-60deg, rgba(37,99,235,.10) 0%, transparent 55%);
+  mix-blend-mode:overlay;
+  filter: blur(28px) contrast(108%);
+  animation: splashMove2 26s ease-in-out infinite alternate;
+  opacity:.9;
+}
+
+@keyframes splashMove{
+  0%   { transform: translate3d(-1.5%, -1%, 0) rotate(-1deg) }
+  100% { transform: translate3d(1.5%, 1%, 0)  rotate(1deg) }
+}
+@keyframes splashMove2{
+  0%   { transform: translate3d(1%, -1.2%, 0) rotate(1deg) }
+  100% { transform: translate3d(-1%, 1.2%, 0) rotate(-1deg) }
+}
+
+/* Rispetto preferenze utente: stop animazioni */
+@media (prefers-reduced-motion: reduce){
+  .paint-splash::before, .paint-splash::after { animation: none; }
+}
+
+
+
