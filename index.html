@@ -39,12 +39,38 @@
 
   <main id="content">
     <!-- HERO -->
-    <section class="block alt" id="home">
-      <div class="wrap content reveal">
-        <h1>Ristorazione, semplificata con <span class="hl">metodo</span>.</h1>
-        <p>Presentazione ufficiale di <strong>TAPTAP</strong>: visione, fondatore, principi scientifici e <span class="hl">risultati misurabili</span>.</p>
-      </div>
-    </section>
+<section class="block alt hero" id="home">
+  <!-- grafico dinamico -->
+  <svg class="hero-graph" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <!-- sfumature verdi -->
+      <linearGradient id="lg-speed" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0"  stop-color="var(--accent)" stop-opacity="0.15"/>
+        <stop offset="1"  stop-color="var(--accent)" stop-opacity="0.55"/>
+      </linearGradient>
+      <linearGradient id="lg-benefit" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0"  stop-color="var(--ok)" stop-opacity="0.12"/>
+        <stop offset="1"  stop-color="var(--ok)" stop-opacity="0.45"/>
+      </linearGradient>
+      <linearGradient id="lg-revenue" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0"  stop-color="var(--accent)" stop-opacity="0.10"/>
+        <stop offset="1"  stop-color="var(--accent)" stop-opacity="0.60"/>
+      </linearGradient>
+    </defs>
+
+    <!-- velocità -->
+    <path class="line speed"   stroke="url(#lg-speed)"   d="M0,250 C200,220 320,210 520,240 C760,280 900,200 1200,230" />
+    <!-- benefici (stabilità) -->
+    <path class="line benefit" stroke="url(#lg-benefit)" d="M0,280 C180,270 360,230 620,250 C820,265 1000,230 1200,240" />
+    <!-- fatturato (crescente) -->
+    <path class="line revenue" stroke="url(#lg-revenue)" d="M0,310 C160,300 360,280 600,230 C820,185 980,170 1200,140" />
+  </svg>
+
+  <div class="wrap content reveal">
+    <h1>Ristorazione, semplificata con metodo.</h1>
+    <p>Presentazione ufficiale di <strong>TAPTAP</strong>: visione, fondatore, principi scientifici e <span class="hl">risultati misurabili</span>.</p>
+  </div>
+</section>
 
     <!-- IL FONDATORE -->
     <section class="block" id="fondatore">
