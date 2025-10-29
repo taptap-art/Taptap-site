@@ -292,3 +292,148 @@ a[href="#skip-to-content"],
   display: none !important;
 }
 
+/* ===== DASHBOARD DEMO STILE APPLE ===== */
+.dashboard-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  margin-top: 2rem;
+}
+
+.laptop-frame {
+  width: 720px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  border: 2px solid var(--line);
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transform: rotateX(10deg);
+  animation: float 6s ease-in-out infinite;
+}
+
+.laptop-screen {
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: linear-gradient(180deg, #fefefe, #f9fbfd);
+}
+
+/* HEADER */
+.header-bar {
+  height: 28px;
+  background: linear-gradient(90deg, #dfe5ec, #f3f6fa);
+  border-radius: 8px;
+  animation: slideHeader 4s ease-in-out infinite alternate;
+}
+
+/* KPI CARDS */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.kpi-card {
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+  transform: translateY(0);
+  animation: pulseCard 5s ease-in-out infinite alternate;
+}
+
+.kpi-card.green { color: var(--ok); border: 1px solid rgba(31,143,78,.25); }
+.kpi-card.red { color: #b42318; border: 1px solid rgba(180,35,24,.25); }
+.kpi-card.neutral { color: var(--brand); border: 1px solid rgba(52,73,94,.25); }
+
+.kpi-card h3 { font-size: .9rem; color: #6b7280; margin-bottom: 4px; }
+.kpi-card p { font-size: 1.6rem; font-weight: 800; }
+
+/* GRAFICO */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  padding-top: 10px;
+}
+
+.chart .bar {
+  flex: 1;
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--accent), #b7efd2);
+  animation: grow 3s ease-in-out infinite alternate;
+}
+
+.bar1 { animation-delay: 0s; height: 70%; }
+.bar2 { animation-delay: .3s; height: 50%; }
+.bar3 { animation-delay: .6s; height: 80%; }
+.bar4 { animation-delay: .9s; height: 60%; }
+.bar5 { animation-delay: 1.2s; height: 40%; }
+
+/* LISTA ORDINI */
+.orders {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orders .row {
+  display: flex;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeRow 8s ease-in-out infinite;
+}
+
+.orders .row:nth-child(1) { animation-delay: 0s; }
+.orders .row:nth-child(2) { animation-delay: 1s; }
+.orders .row:nth-child(3) { animation-delay: 2s; }
+.orders .row:nth-child(4) { animation-delay: 3s; }
+
+.orders .label { color: var(--brand); font-weight: 600; }
+.orders .val { color: var(--ok); font-weight: 700; }
+
+/* ===== Animazioni Apple-like ===== */
+@keyframes float {
+  0%,100% { transform: rotateX(10deg) translateY(0); }
+  50% { transform: rotateX(10deg) translateY(-10px); }
+}
+
+@keyframes slideHeader {
+  0% { transform: translateX(0); opacity: .9; }
+  100% { transform: translateX(20px); opacity: 1; }
+}
+
+@keyframes pulseCard {
+  0% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,.05); }
+  100% { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+}
+
+@keyframes grow {
+  0% { transform: scaleY(.7); opacity: .8; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes fadeRow {
+  0% { opacity: 0; transform: translateY(10px); }
+  30% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+@media (max-width: 600px){
+  .laptop-frame { transform: none; }
+}
+
