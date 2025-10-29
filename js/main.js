@@ -167,3 +167,15 @@ function startCounterOnce(el) {
 function formatNumber(value, digits){
   return Number(value).toFixed(digits).replace('.', ',');
 }
+
+// Accende l'animazione della demo quando entra in viewport
+(function(){
+  const frame = document.querySelector('#demo-dashboard .laptop-frame');
+  if(!frame) return;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ frame.classList.add('play'); io.disconnect(); }
+    });
+  },{threshold:0.35});
+  io.observe(frame);
+})();
