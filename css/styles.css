@@ -296,3 +296,10 @@ a[href="#content"], a.skip-to-content {
   overflow: hidden;
 }
 
+/* Rimuove completamente il link "Salta al contenuto" inserito da GitHub Pages */
+a[href="#content"],
+a[href="#skip-to-content"],
+.skip-to-content {
+  display: none !important;
+}
+
