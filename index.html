@@ -127,45 +127,50 @@
     </section>
 
     <!-- STUDI -->
-    <section class="block" id="studi">
-      <div class="wrap content reveal">
-        <h2>Studi e principi</h2>
-        <div class="separator" aria-hidden="true"></div>
-        <p><strong>Teoria della soddisfazione del cliente (Oliver, 1980)</strong><br>TAPTAP consente al cliente di gestire autonomamente l’ordine, aumentando fiducia e soddisfazione.</p>
-        <p><strong>Flow esperienziale (Csíkszentmihályi, 1990)</strong><br>TAPTAP elimina interruzioni e rende il percorso d’ordine scorrevole e coinvolgente.</p>
-        <p><strong>Legge di Fitts (1954)</strong><br>L’interfaccia è ottimizzata per azioni rapide e intuitive.</p>
-        <p><strong>Carico cognitivo (Sweller, 1988)</strong><br>Informazioni essenziali e percorsi brevi migliorano comprensione e precisione.</p>
-      </div>
-    </section>
+<section class="block" id="studi">
+  <div class="wrap content reveal">
+    <h2>Studi e principi</h2>
+    <div class="separator" aria-hidden="true"></div>
 
-    <!-- RISULTATI -->
-    <section class="block alt" id="risultati">
-      <div class="wrap content reveal">
-        <h2>Risultati sperimentali</h2>
-        <div class="metrics">
-          <div class="metric"><div class="val">−31,7%</div><div class="desc">Tempi di attesa ridotti.</div></div>
-          <div class="metric"><div class="val">−82,4%</div><div class="desc">Errori d’ordine quasi azzerati.</div></div>
-          <div class="metric"><div class="val">+18,9%</div><div class="desc">Più ritorni nelle prime settimane.</div></div>
-          <div class="metric"><div class="val">+12,6%</div><div class="desc">Scontrino medio più alto.</div></div>
-          <div class="metric"><div class="val">+14,8%</div><div class="desc">Acquisti aggiuntivi aumentati.</div></div>
-          <div class="metric"><div class="val">+0,46★</div><div class="desc">Soddisfazione complessiva più alta.</div></div>
-        </div>
-      </div>
-    </section>
+    <!-- Sfondo pennellate dinamiche -->
+    <svg class="paint-bg" viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="paint1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#007B83" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#00B88A" stop-opacity="0.15"/>
+        </linearGradient>
+        <linearGradient id="paint2" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E8C174" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#C4E5D1" stop-opacity="0.25"/>
+        </linearGradient>
+      </defs>
 
-    <!-- SINTESI -->
-    <section class="block" id="sintesi">
-      <div class="wrap content reveal">
-        <h2>Sintesi</h2>
-        <p><strong>TAPTAP</strong> migliora del +38% la gestione complessiva dei locali, ottimizzando ricavi, tempi e fidelizzazione dei clienti. Una soluzione moderna e concreta per la ristorazione digitale.</p>
-      </div>
-    </section>
-  </main>
+      <!-- Pennellate morbide -->
+      <path d="M0,200 C150,150 300,170 450,120 C600,80 750,100 800,60 L800,300 L0,300 Z" fill="url(#paint1)">
+        <animate attributeName="d" dur="9s" repeatCount="indefinite"
+          values="M0,200 C150,150 300,170 450,120 C600,80 750,100 800,60 L800,300 L0,300 Z;
+                  M0,210 C180,140 320,190 480,130 C640,90 760,120 800,70 L800,300 L0,300 Z;
+                  M0,200 C150,150 300,170 450,120 C600,80 750,100 800,60 L800,300 L0,300 Z"/>
+      </path>
 
-  <footer class="site-foot" role="contentinfo">
-    <div class="wrap">© TAPTAP — Presentazione. Layout one-page centrato, testi con reveal allo scroll.</div>
-  </footer>
+      <path d="M0,180 C120,200 300,220 520,180 C680,150 760,200 800,180 L800,300 L0,300 Z" fill="url(#paint2)">
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="7s" repeatCount="indefinite"/>
+      </path>
+    </svg>
 
-  <script src="js/main.js"></script>
-</body>
-</html>
+    <!-- Contenuto testuale -->
+    <div class="studies-content">
+      <p><strong>Teoria della soddisfazione del cliente (Oliver, 1980)</strong><br>
+        TAPTAP consente al cliente di gestire autonomamente l’ordine, aumentando fiducia e soddisfazione.</p>
+
+      <p><strong>Flow esperienziale (Csíkszentmihályi, 1990)</strong><br>
+        TAPTAP elimina interruzioni e rende il percorso d’ordine scorrevole e coinvolgente.</p>
+
+      <p><strong>Legge di Fitts (1954)</strong><br>
+        L’interfaccia è ottimizzata per azioni rapide e intuitive.</p>
+
+      <p><strong>Carico cognitivo (Sweller, 1988)</strong><br>
+        Informazioni essenziali e percorsi brevi migliorano comprensione e precisione.</p>
+    </div>
+  </div>
+</section>
