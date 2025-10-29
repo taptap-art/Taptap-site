@@ -231,3 +231,59 @@ section:hover{box-shadow:0 10px 28px rgba(0,0,0,.05)}
   font-style:italic;
   text-align:center
 }
+
+/* ==== HERO graph ==== */
+.hero{
+  position: relative;
+  overflow: hidden; /* tiene il grafico dentro il pannello */
+}
+
+.hero-graph{
+  position:absolute;
+  inset: 0 0 auto 0;
+  height: clamp(180px, 30vh, 360px);
+  width: 100%;
+  pointer-events: none;
+  opacity: .9;      /* visibile ma elegante */
+  filter: drop-shadow(0 8px 18px rgba(43,155,99,.08));
+}
+
+.hero-graph .line{
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  /* pattern di dash che scorre → sensazione di “flusso” */
+  stroke-dasharray: 14 10;
+  animation: dash-move 12s linear infinite, float 6s ease-in-out infinite;
+}
+
+/* piccole differenze tra le tre linee per profondità visiva */
+.hero-graph .speed   { stroke-width: 3.2; animation-duration: 10s, 5.5s }
+.hero-graph .benefit { stroke-width: 3.8; stroke-dasharray: 18 12; animation-duration: 13s, 6.5s }
+.hero-graph .revenue { stroke-width: 4.4; stroke-dasharray: 22 14; animation-duration: 16s, 7.5s }
+
+/* animazioni */
+@keyframes dash-move {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1000; }
+}
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* riduci intensità su schermi piccoli */
+@media (max-width: 520px){
+  .hero-graph{ opacity: .75; }
+}
+
+/* rispetto preferenze utente: niente animazioni se ridotte */
+@media (prefers-reduced-motion: reduce){
+  .hero-graph .line{
+    animation: none;
+    stroke-dasharray: none;
+  }
+}
+
+
