@@ -96,10 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
     items.forEach(el => io.observe(el));
 
     // Contatori già visibili al load ma fuori da .reveal
-    document.querySelectorAll('[data-countto]').forEach(el => {
-      if (isVisible(el)) startCounterOnce(el);
-    });
+document.querySelectorAll('[data-countto]').forEach(el => {
+  const r = el.getBoundingClientRect();
+  if (r.top < window.innerHeight && r.bottom > 0) {
+    startCounterOnce(el);
   }
+});
 
   // ---------- Smooth scroll per eventuali anchor fuori dal menu ----------
   document.querySelectorAll('a[href^="#"]').forEach(link => {
