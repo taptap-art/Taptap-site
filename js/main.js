@@ -1,13 +1,13 @@
 /* ================================
-   TAPTAP — main.js (finale consigliato)
+   TAPTAP — main.js
    - Burger menu (toggle + chiudi on click/ESC/outside)
-   - Reveal: on load + on scroll
-   - Counters: partono in viewport
+   - Reveal: on load + on scroll (per .reveal)
+   - Counters: partono quando entrano
    - Smooth anchor scroll
 ================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // fa comparire i contenuti anche se JS arriva dopo
+  // sblocca subito gli elementi (così niente roba sfocata prima che parta il JS)
   document.body.classList.add('reveal-ready');
 
   // ---------- BURGER ----------
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    // click su una voce
+    // click su una voce del menu
     nav.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -65,40 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // niente animazioni: mostra tutto
     items.forEach(el => el.classList.add('in'));
   } else {
-    const isVisible = (el) => {
-      const r = el.getBoundingClientRect();
-      return r.top < window.innerHeight * 0.88 && r.bottom > 0;
-    };
-
-    // elementi già visibili al load
-    let loadDelay = 0;
-    items.forEach(el => {
-      if (isVisible(el)) {
-        el.style.setProperty('--reveal-delay', `${loadDelay}ms`);
-        el.classList.add('in');
-        // eventuali contatori già visibili
-        el.querySelectorAll('[data-countto]').forEach(startCounterOnce);
-        loadDelay += 100;
-      }
-    });
-
-    // observer per gli altri
+    // observer che accende le sezioni quando entrano
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const el = entry.target;
         if (entry.isIntersecting) {
+          // fai apparire
           el.classList.add('in');
+          // se dentro ci sono contatori, partono ora
           el.querySelectorAll('[data-countto]').forEach(startCounterOnce);
+          // se non deve ripetersi, dopo la prima volta smetti di osservarlo
           if (el.dataset.repeat !== 'true') io.unobserve(el);
         } else if (el.dataset.repeat === 'true') {
+          // caso raro: se vuoi che sparisca quando esce
           el.classList.remove('in');
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px'
+    });
 
+    // attacca l'observer a tutte le .reveal
     items.forEach(el => io.observe(el));
 
-    // contatori fuori dalle .reveal ma già in viewport
+    // contatori che sono già in viewport ma NON dentro .reveal
     document.querySelectorAll('[data-countto]').forEach(el => {
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight && r.bottom > 0) {
@@ -109,7 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- SMOOTH SCROLL per link fuori dal menu ----------
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    if (nav && nav.contains(link)) return; // già gestiti sopra
+    // quelli nel nav li abbiamo già gestiti sopra
+    if (nav && nav.contains(link)) return;
     link.addEventListener('click', (e) => {
       const id = link.getAttribute('href');
       const target = document.querySelector(id);
@@ -126,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ---------- Helpers ---------- */
-function prefersReducedMotion(){
+function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
@@ -137,7 +129,7 @@ function startCounter(el) {
   const isStar = el.dataset.format === 'star';
   const negative = target < 0;
 
-  // se reduce-motion: metti direttamente il valore finale
+  // niente animazione se reduce-motion
   if (prefersReducedMotion()) {
     const final = formatNumber(Math.abs(target), isStar ? 2 : 1);
     if (isPercent) el.textContent = (negative ? '−' : '+') + final + '%';
@@ -172,21 +164,21 @@ function startCounterOnce(el) {
   startCounter(el);
 }
 
-function formatNumber(value, digits){
+function formatNumber(value, digits) {
   return Number(value).toFixed(digits).replace('.', ',');
 }
 
-// ---------- demo dashboard (se c'è) ----------
-(function(){
+// ---------- DEMO DASHBOARD (se c'è) ----------
+(function () {
   const frame = document.querySelector('#demo-dashboard .laptop-frame');
-  if(!frame) return;
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
+  if (!frame) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
         frame.classList.add('play');
         io.disconnect();
       }
     });
-  },{threshold:0.35});
+  }, { threshold: 0.35 });
   io.observe(frame);
 })();
