@@ -543,57 +543,60 @@ a[href="#skip-to-content"],
   }
 }
 
-/* ===== EFFETTO LINEA DI CRESCITA (sezione Sintesi) ===== */
+/* ===== SINTESI con linea di crescita ===== */
 .section-sintesi {
   position: relative;
   overflow: hidden;
   background: var(--panel);
   border-radius: 14px;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.035);
   padding: 4rem 0;
 }
 
-.section-sintesi .growth-bg {
+/* linea di grafico minimal alla Apple */
+.sintesi-line {
   position: absolute;
-  inset: -30% -10% auto -10%;
+  inset: -8% -12% auto;
   height: 180px;
   pointer-events: none;
   background:
-    radial-gradient(140px 90px at 8% 88%, rgba(43,155,99,.15), transparent 65%),
-    linear-gradient(120deg, rgba(43,155,99,.08) 0%, rgba(248,249,251,0) 70%);
-  filter: blur(6px);
-  opacity: .85;
-  animation: riseLine 14s ease-in-out infinite alternate;
+    linear-gradient(110deg, rgba(248,249,251,0) 0%, rgba(248,249,251,1) 18%, rgba(248,249,251,0) 35%) /* leggerissima luce */,
+    none;
 }
 
-.section-sintesi .growth-bg::after {
+/* la vera linea */
+.sintesi-line::after {
   content: "";
   position: absolute;
-  inset: 18% 8% auto 4%;
+  inset: 40% 0 auto 0;
   height: 3px;
-  background: linear-gradient(90deg, rgba(248,249,251,0) 0%, rgba(43,155,99,1) 35%, rgba(43,155,99,0) 90%);
+  background: linear-gradient(90deg, rgba(43,155,99,0) 0%, rgba(43,155,99,1) 45%, rgba(43,155,99,0) 100%);
   border-radius: 999px;
-  box-shadow: 0 12px 32px rgba(43,155,99,.25);
+  filter: drop-shadow(0 10px 16px rgba(43,155,99,.14));
+  /* simuliamo la salita con una trasformazione */
   transform-origin: left center;
-  animation: riseStroke 14s ease-in-out infinite alternate;
+  animation: sintesiRise 9s ease-in-out infinite;
 }
 
-/* Animazioni */
-@keyframes riseLine {
-  0%   { transform: translateY(16px) scale(1); opacity: .9; }
-  100% { transform: translateY(-10px) scale(1.08); opacity: 1; }
+/* animazione: la linea “si inclina” e risale */
+@keyframes sintesiRise {
+  0% {
+    transform: translateX(-6%) translateY(10px) rotate(-1deg) scaleX(1.1);
+    opacity: .85;
+  }
+  50% {
+    transform: translateX(2%) translateY(-4px) rotate(-6deg) scaleX(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(8%) translateY(-10px) rotate(-10deg) scaleX(1.08);
+    opacity: .9;
+  }
 }
 
-@keyframes riseStroke {
-  0%   { transform: translateY(14px) rotate(-1.8deg); }
-  100% { transform: translateY(-6px) rotate(-8deg); }
-}
-
-/* Riduzione movimento */
+/* se l’utente non vuole animazioni */
 @media (prefers-reduced-motion: reduce) {
-  .section-sintesi .growth-bg,
-  .section-sintesi .growth-bg::after {
+  .sintesi-line::after {
     animation: none;
-    transform: none;
+    transform: translateX(0) translateY(0) rotate(-7deg);
   }
 }
