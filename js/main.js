@@ -4,10 +4,11 @@
    - Reveal: on load + on scroll (per .reveal)
    - Counters: partono quando entrano
    - Smooth anchor scroll
+   - Dashboard demo
 ================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // sblocca subito gli elementi (così niente roba sfocata prima che parta il JS)
+  // sblocca subito gli elementi (così non rimangono visibili se JS tarda)
   document.body.classList.add('reveal-ready');
 
   // ---------- BURGER ----------
@@ -28,8 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.querySelector(id);
         if (target) {
           e.preventDefault();
+          // chiudi menu
           nav.classList.remove('open');
           burger.setAttribute('aria-expanded', 'false');
+          // scrolla
           target.scrollIntoView({
             behavior: prefersReducedMotion() ? 'auto' : 'smooth',
             block: 'start'
@@ -58,24 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---------- REVEAL ----------
+  // ---------- REVEAL (slide-up) ----------
   const items = Array.from(document.querySelectorAll('.reveal'));
 
   if (prefersReducedMotion()) {
-    // niente animazioni: mostra tutto
+    // se l'utente non vuole animazioni → mostra tutto
     items.forEach(el => el.classList.add('in'));
+    // avvia eventuali contatori subito
+    document.querySelectorAll('[data-countto]').forEach(startCounterOnce);
   } else {
     // observer che accende le sezioni quando entrano
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const el = entry.target;
         if (entry.isIntersecting) {
-          // fai apparire
+          // fai apparire (classe in → la usa il CSS nuovo)
           el.classList.add('in');
+
           // se dentro ci sono contatori, partono ora
           el.querySelectorAll('[data-countto]').forEach(startCounterOnce);
+
           // se non deve ripetersi, dopo la prima volta smetti di osservarlo
-          if (el.dataset.repeat !== 'true') io.unobserve(el);
+          if (el.dataset.repeat !== 'true') {
+            io.unobserve(el);
+          }
         } else if (el.dataset.repeat === 'true') {
           // caso raro: se vuoi che sparisca quando esce
           el.classList.remove('in');
@@ -89,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // attacca l'observer a tutte le .reveal
     items.forEach(el => io.observe(el));
 
-    // contatori che sono già in viewport ma NON dentro .reveal
+    // contatori già visibili ma non dentro .reveal
     document.querySelectorAll('[data-countto]').forEach(el => {
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight && r.bottom > 0) {
@@ -115,6 +124,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ---------- DEMO DASHBOARD (se c'è) ----------
+  const frame = document.querySelector('#demo-dashboard .laptop-frame');
+  if (frame) {
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          frame.classList.add('play');
+          io2.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    io2.observe(frame);
+  }
 });
 
 /* ---------- Helpers ---------- */
@@ -167,18 +190,3 @@ function startCounterOnce(el) {
 function formatNumber(value, digits) {
   return Number(value).toFixed(digits).replace('.', ',');
 }
-
-// ---------- DEMO DASHBOARD (se c'è) ----------
-(function () {
-  const frame = document.querySelector('#demo-dashboard .laptop-frame');
-  if (!frame) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        frame.classList.add('play');
-        io.disconnect();
-      }
-    });
-  }, { threshold: 0.35 });
-  io.observe(frame);
-})();
