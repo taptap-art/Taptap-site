@@ -118,16 +118,37 @@ p{color:var(--muted);font-size:var(--fs-body);line-height:1.75;margin-bottom:1.1
   padding:24px 0;text-align:center;background:#ffffff;font-size:.95rem
 }
 
-/* ===== REVEAL (animazioni di apparizione fluida) ===== */
+/* ===== REVEAL (animazioni di apparizione fluida, corrette) ===== */
+body:not(.reveal-ready) .reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
   filter: blur(8px);
   transition:
-    opacity 1s ease-out,
-    transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-    filter 1.2s ease-out;
+    opacity 0.9s ease-out,
+    transform 1s cubic-bezier(0.25, 0.8, 0.25, 1),
+    filter 0.9s ease-out;
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 }
 
 .reveal.in {
