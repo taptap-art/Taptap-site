@@ -19,7 +19,9 @@
 <body>
   <header class="site-head" role="banner">
     <div class="wrap head-inner">
-      <div class="brand" aria-label="TAPTAP"><span class="mark" aria-hidden="true"></span><span>TAPTAP</span></div>
+      <div class="brand" aria-label="TAPTAP">
+        <span class="mark" aria-hidden="true"></span><span>TAPTAP</span>
+      </div>
 
       <button class="burger" aria-label="Apri menu" aria-expanded="false" aria-controls="site-menu">
         <span></span><span></span><span></span>
@@ -28,7 +30,6 @@
       <nav id="site-menu" class="nav" role="navigation" aria-label="Sezioni del sito">
         <a href="#fondatore">Fondatore</a>
         <a href="#prodotto">Cos'è</a>
-        <a href="#kpi">Numeri</a>
         <a href="#confronto">Confronto</a>
         <a href="#studi">Studi</a>
         <a href="#risultati">Risultati</a>
@@ -55,7 +56,7 @@
             <stop offset="1" stop-color="var(--accent)" stop-opacity="0.60"/>
           </linearGradient>
         </defs>
-        <path class="line speed" stroke="url(#lg-speed)" d="M0,250 C200,220 320,210 520,240 C760,280 900,200 1200,230" />
+        <path class="line speed" stroke="url(#lg-speed)"   d="M0,250 C200,220 320,210 520,240 C760,280 900,200 1200,230" />
         <path class="line benefit" stroke="url(#lg-benefit)" d="M0,280 C180,270 360,230 620,250 C820,265 1000,230 1200,240" />
         <path class="line revenue" stroke="url(#lg-revenue)" d="M0,310 C160,300 360,280 600,230 C820,185 980,170 1200,140" />
       </svg>
@@ -70,7 +71,7 @@
     <section class="block" id="fondatore">
       <div class="wrap content reveal">
         <h2>Il fondatore</h2>
-        <p><strong>Manuel Stendardo</strong>, 25 anni, vive in provincia di Lecce. Dopo gli studi in <em>Sistemi Informatici Aziendali</em> e la <em>laurea in Filosofia</em>, ha unito metodo, analisi e visione per sviluppare un progetto che mette la tecnologia al servizio della ristorazione in modo concreto e funzionale.</p>
+        <p><strong>Manuel Stendardo</strong>, 25 anni, vive in provincia di Lecce. Dopo gli studi in <em>Sistemi Informatici Aziendali</em> e la <em>laurea in Filosofia</em> presso l’Università del Salento, ha unito metodo, analisi e visione per sviluppare un progetto che mette la tecnologia al servizio della ristorazione in modo concreto e funzionale.</p>
         <p>L’idea nasce da un lavoro di <strong>osservazione, sperimentazione e confronto diretto</strong> con il settore, con l’obiettivo di individuare in modo concreto i bisogni reali dei locali e le aree in cui la tecnologia può offrire un <span class="hl">valore misurabile</span>.</p>
         <p><strong>TAPTAP</strong> è stato concepito come un sistema <strong>intuitivo</strong> e stabile, creato per rendere ogni fase — dall’ordine al pagamento — più <span class="hl">fluida</span>, precisa e soddisfacente, sia per il personale che per i clienti.</p>
         <p>Oggi TAPTAP rappresenta una nuova direzione per la ristorazione moderna: un modello fondato su logica, efficienza e concretezza, che si sta già affermando come riferimento per chi punta a <strong>risultati reali</strong> e <strong>gestione efficiente</strong>.</p>
@@ -84,29 +85,6 @@
         <p><strong>TAPTAP</strong> è una piattaforma digitale <span class="hl">chiara e immediata</span>, ideata per semplificare la gestione e migliorare l’organizzazione di bar, ristoranti e pizzerie.</p>
         <p>Il cliente visualizza il menù, ordina e paga dal proprio smartphone in modo rapido e sicuro, connesso direttamente alla gestione interna del locale.</p>
         <p>L’integrazione con <strong>SumUp</strong> garantisce pagamenti fluidi e commissioni minime, mentre il pannello admin offre statistiche, analisi e monitoraggio in tempo reale.</p>
-      </div>
-    </section>
-
-    <!-- KPI / NUMERI VERDI -->
-    <section class="block" id="kpi">
-      <div class="wrap content reveal">
-        <h2>Numeri misurabili</h2>
-        <p class="intro">Valori reali ottenuti dai test di utilizzo TAPTAP.</p>
-
-        <div class="study-metrics">
-          <div class="study-metric">
-            <div class="study-number" data-countto="+31,7%">+31,7%</div>
-            <p class="study-label">Riduzione tempi di attesa</p>
-          </div>
-          <div class="study-metric">
-            <div class="study-number" data-countto="-82,4%">−82,4%</div>
-            <p class="study-label">Errori d’ordine rispetto al cartaceo</p>
-          </div>
-          <div class="study-metric">
-            <div class="study-number" data-countto="+12,6%">+12,6%</div>
-            <p class="study-label">Aumento scontrino medio</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -146,8 +124,9 @@
       </div>
     </section>
 
-    <!-- STUDI -->
-    <section class="block" id="studi">
+    <!-- STUDI (con pennellate) -->
+    <section class="block with-splash" id="studi">
+      <div class="paint-splash" aria-hidden="true"></div>
       <div class="wrap content reveal">
         <h2>Studi e principi</h2>
         <div class="separator" aria-hidden="true"></div>
@@ -166,7 +145,7 @@
       </div>
     </section>
 
-    <!-- RISULTATI -->
+    <!-- RISULTATI (quella che vuoi tenere) -->
     <section class="block alt" id="risultati">
       <div class="wrap content reveal">
         <h2>Risultati sperimentali</h2>
@@ -213,15 +192,6 @@
   <footer class="site-foot" role="contentinfo">
     <div class="wrap">© TAPTAP — Presentazione. Layout one-page centrato, testi con reveal allo scroll.</div>
   </footer>
-
-  <!-- opzionale: mostra subito i numeri verdi -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".study-number[data-countto]").forEach(el => {
-        el.textContent = el.getAttribute("data-countto");
-      });
-    });
-  </script>
 
   <script src="js/main.js"></script>
 </body>
