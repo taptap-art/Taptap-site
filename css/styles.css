@@ -118,12 +118,34 @@ p{color:var(--muted);font-size:var(--fs-body);line-height:1.75;margin-bottom:1.1
   padding:24px 0;text-align:center;background:#ffffff;font-size:.95rem
 }
 
-/* ===== REVEAL (animazioni) ===== */
-.reveal{
-  opacity:0;transform:translateY(22px);
-  transition:opacity .8s ease, transform .8s ease;
-  transition-delay:var(--reveal-delay,0ms)
+/* ===== REVEAL (animazioni di apparizione fluida) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(8px);
+  transition:
+    opacity 1s ease-out,
+    transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+    filter 1.2s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
 }
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* nessuna animazione se preferenze utente ridotte */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
 .reveal.in{opacity:1;transform:none}
 body:not(.reveal-ready) .reveal{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
