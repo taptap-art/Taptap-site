@@ -1,27 +1,27 @@
 /* ================================
    TAPTAP — main.js (finale consigliato)
    - Burger menu (toggle + chiudi on click/ESC/outside)
-   - Reveal: on load + on scroll (accessibile)
-   - Counters: partono in viewport + rispetto reduce-motion
+   - Reveal: on load + on scroll
+   - Counters: partono in viewport
    - Smooth anchor scroll
 ================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Mostra comunque i contenuti anche se JS parte in ritardo
+  // fa comparire i contenuti anche se JS arriva dopo
   document.body.classList.add('reveal-ready');
 
-  // ---------- Burger menu ----------
+  // ---------- BURGER ----------
   const burger = document.querySelector('.burger');
   const nav = document.getElementById('site-menu');
 
   if (burger && nav) {
-    // Apri/chiudi
+    // apri/chiudi
     burger.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    // Chiudi dopo click su una voce + smooth scroll
+    // click su una voce
     nav.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -30,15 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
           e.preventDefault();
           nav.classList.remove('open');
           burger.setAttribute('aria-expanded', 'false');
-          // scroll morbido (rispetta preferenze di movimento)
-          target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
-          // Aggiorna hash senza saltare
+          target.scrollIntoView({
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+            block: 'start'
+          });
           history.pushState(null, '', id);
         }
       });
     });
 
-    // Chiudi con ESC
+    // chiudi con ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && nav.classList.contains('open')) {
         nav.classList.remove('open');
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Chiudi clic esterno
+    // chiudi clic esterno
     document.addEventListener('click', (e) => {
       if (!nav.classList.contains('open')) return;
       const clickInside = nav.contains(e.target) || burger.contains(e.target);
@@ -57,9 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---------- Reveal on load + on scroll ----------
+  // ---------- REVEAL ----------
   const items = Array.from(document.querySelectorAll('.reveal'));
+
   if (prefersReducedMotion()) {
+    // niente animazioni: mostra tutto
     items.forEach(el => el.classList.add('in'));
   } else {
     const isVisible = (el) => {
@@ -67,19 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return r.top < window.innerHeight * 0.88 && r.bottom > 0;
     };
 
-    // Stagger iniziale (già visibili al load)
+    // elementi già visibili al load
     let loadDelay = 0;
     items.forEach(el => {
       if (isVisible(el)) {
         el.style.setProperty('--reveal-delay', `${loadDelay}ms`);
         el.classList.add('in');
-        // attiva eventuali contatori dentro l'elemento
+        // eventuali contatori già visibili
         el.querySelectorAll('[data-countto]').forEach(startCounterOnce);
-        loadDelay += 100; // elegante ma reattivo
+        loadDelay += 100;
       }
     });
 
-    // Observer per il resto (+ ripetizione opzionale)
+    // observer per gli altri
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const el = entry.target;
@@ -95,24 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     items.forEach(el => io.observe(el));
 
-    // Contatori già visibili al load ma fuori da .reveal
-document.querySelectorAll('[data-countto]').forEach(el => {
-  const r = el.getBoundingClientRect();
-  if (r.top < window.innerHeight && r.bottom > 0) {
-    startCounterOnce(el);
+    // contatori fuori dalle .reveal ma già in viewport
+    document.querySelectorAll('[data-countto]').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        startCounterOnce(el);
+      }
+    });
   }
-});
 
-  // ---------- Smooth scroll per eventuali anchor fuori dal menu ----------
+  // ---------- SMOOTH SCROLL per link fuori dal menu ----------
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    // se è già gestito nel nav sopra, salta
-    if (nav && nav.contains(link)) return;
+    if (nav && nav.contains(link)) return; // già gestiti sopra
     link.addEventListener('click', (e) => {
       const id = link.getAttribute('href');
       const target = document.querySelector(id);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+        target.scrollIntoView({
+          behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+          block: 'start'
+        });
         history.pushState(null, '', id);
       }
     });
@@ -131,7 +137,7 @@ function startCounter(el) {
   const isStar = el.dataset.format === 'star';
   const negative = target < 0;
 
-  // se reduce-motion: imposta subito il valore finale
+  // se reduce-motion: metti direttamente il valore finale
   if (prefersReducedMotion()) {
     const final = formatNumber(Math.abs(target), isStar ? 2 : 1);
     if (isPercent) el.textContent = (negative ? '−' : '+') + final + '%';
@@ -143,7 +149,7 @@ function startCounter(el) {
   let from = 0;
   const to = Math.abs(target);
   let start = null;
-  const dur = 1300; // leggermente più lento
+  const dur = 1300;
 
   function step(ts) {
     if (!start) start = ts;
@@ -170,13 +176,16 @@ function formatNumber(value, digits){
   return Number(value).toFixed(digits).replace('.', ',');
 }
 
-// Accende l'animazione della demo quando entra in viewport
+// ---------- demo dashboard (se c'è) ----------
 (function(){
   const frame = document.querySelector('#demo-dashboard .laptop-frame');
   if(!frame) return;
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){ frame.classList.add('play'); io.disconnect(); }
+      if(e.isIntersecting){
+        frame.classList.add('play');
+        io.disconnect();
+      }
     });
   },{threshold:0.35});
   io.observe(frame);
